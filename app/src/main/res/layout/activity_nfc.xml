@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NfcActivity">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonNfc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:focusable="true"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_nfc_24"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_exit_to_app_24"
+        android:focusable="true" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/buttonExit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_save_24"
+        android:focusable="true" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="451dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editFio"
+                android:layout_width="318dp"
+                android:layout_height="77dp"
+                android:ems="10"
+
+                android:gravity="center"
+                android:hint="Введите ваше ФИО"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editPhone"
+                android:layout_width="318dp"
+                android:layout_height="77dp"
+                android:ems="10"
+
+                android:gravity="center"
+                android:hint="Введите ваш номер"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editAboutMe"
+                android:layout_width="318dp"
+                android:layout_height="77dp"
+                android:ems="10"
+
+                android:gravity="center"
+                android:hint="Описание себя"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editCompany"
+                android:layout_width="318dp"
+                android:layout_height="77dp"
+                android:ems="10"
+
+                android:gravity="center"
+                android:hint="Название компании"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editProfesia"
+                android:layout_width="318dp"
+                android:layout_height="77dp"
+                android:ems="10"
+
+                android:gravity="center"
+                android:hint="Ваша професия"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editPhoto"
+                android:layout_width="318dp"
+                android:layout_height="77dp"
+                android:ems="10"
+
+                android:gravity="center"
+                android:hint="Ссылка на фото"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editSiteCompany"
+                android:layout_width="318dp"
+                android:layout_height="77dp"
+                android:ems="10"
+
+                android:gravity="center"
+                android:hint="Сайт компании"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editInst"
+                android:layout_width="318dp"
+                android:layout_height="77dp"
+                android:ems="10"
+
+                android:gravity="center"
+                android:hint="Instagram"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTel"
+                android:layout_width="318dp"
+                android:layout_height="77dp"
+                android:ems="10"
+
+                android:gravity="center"
+                android:hint="Telegram"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editVk"
+                android:layout_width="318dp"
+                android:layout_height="77dp"
+                android:ems="10"
+
+                android:gravity="center"
+                android:hint="ВКонтакте"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
