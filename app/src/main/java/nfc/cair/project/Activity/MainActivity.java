@@ -1,4 +1,4 @@
-package nfc.cair.project;
+package nfc.cair.project.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import nfc.cair.project.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     @Nullable
