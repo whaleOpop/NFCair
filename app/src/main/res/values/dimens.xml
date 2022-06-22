@@ -2,4 +2,6 @@
 <resources>
     <dimen name="bg_height">1000dp</dimen>
     <dimen name="bg_width">1000dp</dimen>
+    <dimen name="ic_height">650dp</dimen>
+    <dimen name="ic_width">650dp</dimen>
 </resources>

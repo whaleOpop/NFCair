@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NfcActivity">
+    tools:context=".Activity.NfcActivity">
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonNfc"
+        android:id="@+id/buttonDLoad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:contentDescription="@string/app_name"
-        android:focusable="true"
         app:layout_constraintBottom_toTopOf="@+id/buttonSave"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_nfc_24"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        app:srcCompat="@drawable/ic_baseline_arrow_downward_24"
+        tools:ignore="DuplicateClickableBoundsCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonExit"

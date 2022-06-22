@@ -3,10 +3,11 @@
 
     <item android:drawable="@color/white"
         android:width="@dimen/bg_width"
-        android:height="@dimen/bg_height"/>
+        android:height="@dimen/bg_height" />
 
-        <item android:drawable="@drawable/ic_logo"
+        <item android:drawable="@drawable/cair_foreground"
             android:gravity="center"
-            />
+            android:width="@dimen/ic_height"
+            android:height="@dimen/ic_width"/>
 
 </layer-list>

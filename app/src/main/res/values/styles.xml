@@ -3,6 +3,7 @@
 <style name="SplashTheme" parent="Theme.MyApplication">
     <item name="android:windowBackground">@drawable/splash_screen</item>
 </style>
+
 <style name="ButtonStyleAdd" parent="@android:style/Widget.Button">
 
     <item name="android:background">@drawable/circle</item>

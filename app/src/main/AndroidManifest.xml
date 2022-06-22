@@ -3,18 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="nfc.cair.project">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.NFC"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/cair"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/cair_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:largeHeap="true">
+
         <activity
-            android:name=".SplashScreen"
+            android:name=".Activity.SplashScreen"
             android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
@@ -22,12 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
+
+        <activity android:name=".Activity.MainActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".NfcActivity"
+        <activity android:name=".Activity.NfcActivity"
             android:exported="true">
         </activity>
+        <activity android:name=".Activity.EditActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
