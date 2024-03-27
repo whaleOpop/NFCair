@@ -1,36 +1,27 @@
 package nfc.cair.project.Adapter;
 
 
-import android.content.Context;
+
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
-import android.nfc.NfcAdapter;
-import android.nfc.Tag;
-import android.nfc.tech.Ndef;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
+
+
 import java.util.ArrayList;
 
 
-import nfc.cair.project.Activity.EditActivity;
+
 import nfc.cair.project.Activity.MainActivity;
-import nfc.cair.project.Activity.NfcActivity;
 import nfc.cair.project.Database.DbConnect;
 import nfc.cair.project.Model.CardView;
 
@@ -42,8 +33,9 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     MainActivity main = MainActivity.instance;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView icon;
-        public TextView name;
+
+        public TextView doctorNumber;
+        public TextView nameDisease;
         public FloatingActionButton delete;
         public FloatingActionButton nfc;
         public FloatingActionButton edit;
@@ -51,8 +43,8 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            icon = itemView.findViewById(R.id.imageIcon);
-            name = itemView.findViewById(R.id.textName);
+            doctorNumber = itemView.findViewById(R.id.textdoctor);
+            nameDisease = itemView.findViewById(R.id.textDisease);
             delete = itemView.findViewById(R.id.buttonDelete);
             edit = itemView.findViewById(R.id.buttonEdit);
             nfc = itemView.findViewById(R.id.buttonLoad);
@@ -74,8 +66,8 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         CardView currentItem = mList.get(position);
-        holder.name.setText(currentItem.getTextName());
-        Picasso.get().load(currentItem.getIconLink()).resize(90, 90).into(holder.icon);
+        holder.doctorNumber.setText(currentItem.getDoctorNumber());
+        holder.nameDisease.setText(currentItem.getNameDisease());
         holder.layout.setId(currentItem.getId());
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +86,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 nfcCardViewShowDialog(holder);
-                main.setLink(encrypt(String.valueOf(holder.layout.getId()), "34987342"));
+                main.setLink(encrypt(String.valueOf(holder.layout.getId()), "KiDKqfpzDchh"));
             }
         });
     }
@@ -135,7 +127,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     private void deleteCardView(ViewHolder holder) {
         new AlertDialog.Builder(holder.layout.getContext())
                 .setTitle("Удаление")
-                .setMessage("ВЫ уверены что хотите удалить визитку : \"" + holder.name.getText().toString() + "\"?")
+                .setMessage("ВЫ уверены что хотите удалить визитку : \"" + holder.nameDisease.getText().toString() + "\"?")
                 // Specifying a listener allows you to take an action before dismissing the dialog.
                 // The dialog is automatically dismissed when a dialog button is clicked.
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

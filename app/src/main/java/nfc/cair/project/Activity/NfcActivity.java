@@ -1,29 +1,21 @@
 package nfc.cair.project.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import nfc.cair.project.Adapter.CardViewAdapter;
 import nfc.cair.project.Database.DbConnect;
-import nfc.cair.project.Model.CardView;
 import nfc.cair.project.R;
 
 public class NfcActivity extends AppCompatActivity implements View.OnClickListener {
@@ -38,26 +30,22 @@ public class NfcActivity extends AppCompatActivity implements View.OnClickListen
     }
 
 
-
     private FloatingActionButton buttonDown;
     private FloatingActionButton buttonSave;
     private FloatingActionButton buttonExit;
-    private EditText editFio;
-    private EditText editPhone;
-    private EditText editAboutMe;
-    private EditText editCompany;
-    private EditText editProfesia;
-    private EditText editPhoto;
-    private EditText editSiteCompany;
-    private EditText editInst;
-    private EditText editTel;
-    private EditText editVk;
-
+    private EditText editMedicine;
+    private EditText editNameDisease;
+    private EditText editSymptoms;
+    private EditText editFirstAid;
+    private EditText editDoctoname;
+    private EditText editDoctorNumber;
+    SharedPreferences sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc);
         InitializationActivityObj();
+
 
     }
 
@@ -98,7 +86,7 @@ public class NfcActivity extends AppCompatActivity implements View.OnClickListen
                     e.printStackTrace();
                 }
 
-                MainActivity.instance.getInstance().addCardView(getEdittext().get(0),editCompany.getText().toString(),editPhoto.getText().toString());
+                MainActivity.instance.getInstance().addCardView(getEdittext().get(0), editDoctorNumber.getText().toString(), editNameDisease.getText().toString());
                 MainActivity.instance.getInstance().saveData();
 
                 startActivity(intent);
@@ -117,9 +105,10 @@ public class NfcActivity extends AppCompatActivity implements View.OnClickListen
 
             DbConnect con = new DbConnect();
             con.run();
-            String sqlSelect = "SELECT COUNT(*)  from `nfcinfo`";
+            String sqlSelect = "SELECT COUNT(*)  from `Diseases`";
             id = con.SelectQuery(sqlSelect).get(0);
             getEdittext().add(0, id);
+
         }
     }
 
@@ -131,7 +120,8 @@ public class NfcActivity extends AppCompatActivity implements View.OnClickListen
             DbConnect con = new DbConnect();
             con.run();
             if (getEdittext() != null) {
-                String sqlInsert = " INSERT INTO `nfcinfo`(`ID`, `FIO`,`NUMBERs`, `ABOUTME`, `COMPANY`, `PROFESION`, `LINKPHOTO`, `SITECOMPANY`, `INST`, `TELE`, `VKON`)";
+                String sqlInsert = " INSERT INTO `Diseases` (`Risk`, `Medicine`,`Name_of_the_disease`, `Symptoms`, `First_aid_for_symptoms`, `Number_Doctor`, `FIO_Doctor`, `Patient`)";
+                getEdittext().add(sharedPref.getString("id", "400"));
                 con.InsertQuery(sqlInsert, getEdittext());
             }
 
@@ -140,16 +130,12 @@ public class NfcActivity extends AppCompatActivity implements View.OnClickListen
 
 
     private void InitializationActivityObj() {
-        editFio = (EditText) findViewById(R.id.editFio);
-        editPhone = (EditText) findViewById(R.id.editPhone);
-        editAboutMe = (EditText) findViewById(R.id.editAboutMe);
-        editCompany = (EditText) findViewById(R.id.editCompany);
-        editProfesia = (EditText) findViewById(R.id.editProfesia);
-        editPhoto = (EditText) findViewById(R.id.editPhoto);
-        editSiteCompany = (EditText) findViewById(R.id.editSiteCompany);
-        editInst = (EditText) findViewById(R.id.editInst);
-        editTel = (EditText) findViewById(R.id.editTel);
-        editVk = (EditText) findViewById(R.id.editVk);
+        editMedicine = (EditText) findViewById(R.id.medicine);
+        editNameDisease = (EditText) findViewById(R.id.nameDisease);
+        editSymptoms = (EditText) findViewById(R.id.symptoms);
+        editFirstAid = (EditText) findViewById(R.id.firstAid);
+        editDoctoname = (EditText) findViewById(R.id.doctoname);
+        editDoctorNumber = (EditText) findViewById(R.id.doctorNumber);
 
 
         buttonSave = (FloatingActionButton) findViewById(R.id.buttonSave);
@@ -157,25 +143,23 @@ public class NfcActivity extends AppCompatActivity implements View.OnClickListen
         buttonSave.setOnClickListener(this);
         buttonExit.setOnClickListener(this);
 
-        buttonDown=findViewById(R.id.buttonDLoad);
+        buttonDown = findViewById(R.id.buttonDLoad);
         buttonDown.setVisibility(View.INVISIBLE);
         buttonSave.setVisibility(View.VISIBLE);
         buttonExit.setVisibility(View.VISIBLE);
+        sharedPref= getSharedPreferences("my_pref", Context.MODE_PRIVATE);
     }
 
 
     private void arrayListAdd(ArrayList<String> edittext) {
 
-        edittext.add(editFio.getText().toString());
-        edittext.add(editPhone.getText().toString());
-        edittext.add(editAboutMe.getText().toString());
-        edittext.add(editCompany.getText().toString());
-        edittext.add(editProfesia.getText().toString());
-        edittext.add(editPhoto.getText().toString());
-        edittext.add(editSiteCompany.getText().toString());
-        edittext.add(editInst.getText().toString());
-        edittext.add(editTel.getText().toString());
-        edittext.add(editVk.getText().toString());
+        edittext.add(editMedicine.getText().toString());
+        edittext.add(editNameDisease.getText().toString());
+        edittext.add(editSymptoms.getText().toString());
+        edittext.add(editFirstAid.getText().toString());
+        edittext.add(editDoctoname.getText().toString());
+        edittext.add(editDoctorNumber.getText().toString());
+
 
     }
 

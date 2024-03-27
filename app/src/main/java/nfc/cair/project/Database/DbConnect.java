@@ -1,5 +1,6 @@
 package nfc.cair.project.Database;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import java.sql.Connection;
@@ -10,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
+ * Diseases
  * The class DbConnect  implements a database
  * connection and query implementation
  * Class dbConnect inherits variables for connecting
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 
 public class DbConnect extends DbConfig {
 
-
+    SharedPreferences sharedPref;
     /**
      * This function checks for a connection to the JBDC driver and database.
      */
@@ -72,8 +74,8 @@ public class DbConnect extends DbConfig {
 
     public void UpdateQuery(ArrayList<String> values){
         try {
-            String query="UPDATE `nfccairpepepeepe`.`nfcinfo` SET `FIO` = '"+values.get(1)+"', `NUMBERs` = '"+values.get(2)+"', `ABOUTME` = '"+values.get(3)+"', `COMPANY` = '"+values.get(4)+"', `PROFESION` = '"+values.get(5)+"', `LINKPHOTO` = '"+values.get(6)+"', `SITECOMPANY` = '"+values.get(7)+"', `INST` = '"+values.get(8)+"', `TELE` = '"+values.get(9)+"', `VKON` = '"+values.get(10)+"' WHERE (`ID` = '"+values.get(0)+"');";
-
+            String value = sharedPref.getString("id", "400");
+            String query="UPDATE `sql11664074`.`Diseases` SET `Medicine` = '"+values.get(1)+"', `Name_of_the_disease` = '"+values.get(2)+"', `Symptoms` = '"+values.get(3)+"', `First_aid_for_symptoms` = '"+values.get(4)+"', `Number_Doctor` = '"+values.get(5)+"', `FIO_Doctor` = '"+values.get(6)+", 'Patient' = "+values.get(7)+"' WHERE (`Risk` = '"+values.get(0)+"');";
             Statement stmt = null;
             Connection con = DriverManager.getConnection(url, user, password);
             stmt = con.createStatement();
@@ -101,16 +103,17 @@ public class DbConnect extends DbConfig {
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             int colCount = rs.getMetaData().getColumnCount();
-            System.out.println(colCount);
+
             while (rs.next()) {
                 for (int i = 1; i <= colCount; i++) {
                     resultTable.add(rs.getString(i));
+
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(resultTable);
+
         return resultTable;
     }
 
@@ -121,6 +124,20 @@ public class DbConnect extends DbConfig {
      * @param values Arraylist variables in order per query
      */
 
+    public void InsertQuery(String query) {
+
+
+        try {
+            Statement stmt = null;
+            Connection con = DriverManager.getConnection(url, user, password);
+            stmt = con.createStatement();
+            stmt.executeUpdate(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
     public void InsertQuery(String query, ArrayList<String> values) {
 
 
@@ -138,7 +155,7 @@ public class DbConnect extends DbConfig {
 
     }
     public void DeleteQuery(Integer id){
-        String query ="DELETE FROM `nfccairpepepeepe`.`nfcinfo` WHERE (`ID` = "+id.toString()+")";
+        String query ="DELETE FROM `sql11664074`.`Diseases` WHERE (`Risk` = "+id.toString()+")";
         try {
             Statement stmt = null;
             Connection con = DriverManager.getConnection(url, user, password);

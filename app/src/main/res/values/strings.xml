@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">nFcinka</string>
     <string name="buttonADD">+</string>
+    <string name="Medicine">Лекарство</string>
+    <string name="Disease">Название болезни</string>
+    <string name="First_aid">Первая помощь при симптомах</string>
+    <string name="Symptoms">Симптомы</string>
+    <string name="Doctors_Number">Номер Доктора</string>
+    <string name="Doctors_name">Имя доктора</string>
 </resources>

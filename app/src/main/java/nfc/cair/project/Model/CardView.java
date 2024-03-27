@@ -4,14 +4,8 @@ import java.util.jar.Attributes;
 
 public class CardView {
     private Integer id;
-    private String iconLink;
-    private String textName;
-
-    public CardView(Integer id, String iconLink, String textName) {
-        this.id = id;
-        this.iconLink = iconLink;
-        this.textName = textName;
-    }
+    private String doctorNumber;
+    private String nameDisease;
 
     public Integer getId() {
         return id;
@@ -21,19 +15,25 @@ public class CardView {
         this.id = id;
     }
 
-    public String getIconLink() {
-        return iconLink;
+    public String getDoctorNumber() {
+        return doctorNumber;
     }
 
-    public void setIconLink(String iconLink) {
-        this.iconLink = iconLink;
+    public void setDoctorNumber(String doctorNumber) {
+        this.doctorNumber = doctorNumber;
     }
 
-    public String getTextName() {
-        return textName;
+    public String getNameDisease() {
+        return nameDisease;
     }
 
-    public void setTextName(String textName) {
-        this.textName = textName;
+    public void setNameDisease(String nameDisease) {
+        this.nameDisease = nameDisease;
+    }
+
+    public CardView(Integer id, String doctorNumber, String nameDisease) {
+        this.id = id;
+        this.doctorNumber = doctorNumber;
+        this.nameDisease = nameDisease;
     }
 }

@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_arrow_downward_24"
-        tools:ignore="DuplicateClickableBoundsCheck" />
+        tools:ignore="DuplicateClickableBoundsCheck"
+        android:focusable="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonExit"
@@ -63,105 +64,65 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editFio"
+                android:id="@+id/medicine"
                 android:layout_width="318dp"
                 android:layout_height="77dp"
                 android:ems="10"
 
                 android:gravity="center"
-                android:hint="Введите ваше ФИО"
+                android:hint="@string/Medicine"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editPhone"
+                android:id="@+id/nameDisease"
                 android:layout_width="318dp"
                 android:layout_height="77dp"
                 android:ems="10"
 
                 android:gravity="center"
-                android:hint="Введите ваш номер"
+                android:hint="@string/Disease"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editAboutMe"
+                android:id="@+id/symptoms"
                 android:layout_width="318dp"
                 android:layout_height="77dp"
                 android:ems="10"
 
                 android:gravity="center"
-                android:hint="Описание себя"
+                android:hint="@string/Symptoms"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editCompany"
-                android:layout_width="318dp"
+                android:id="@+id/firstAid"
+                android:layout_width="match_parent"
                 android:layout_height="77dp"
                 android:ems="10"
 
                 android:gravity="center"
-                android:hint="Название компании"
+                android:hint="@string/First_aid"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editProfesia"
-                android:layout_width="318dp"
+                android:id="@+id/doctoname"
+                android:layout_width="match_parent"
                 android:layout_height="77dp"
                 android:ems="10"
 
                 android:gravity="center"
-                android:hint="Ваша професия"
+                android:hint="@string/Doctors_name"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editPhoto"
-                android:layout_width="318dp"
+                android:id="@+id/doctorNumber"
+                android:layout_width="match_parent"
                 android:layout_height="77dp"
                 android:ems="10"
 
                 android:gravity="center"
-                android:hint="Ссылка на фото"
-                android:inputType="textPersonName" />
-
-            <EditText
-                android:id="@+id/editSiteCompany"
-                android:layout_width="318dp"
-                android:layout_height="77dp"
-                android:ems="10"
-
-                android:gravity="center"
-                android:hint="Сайт компании"
-                android:inputType="textPersonName" />
-
-            <EditText
-                android:id="@+id/editInst"
-                android:layout_width="318dp"
-                android:layout_height="77dp"
-                android:ems="10"
-
-                android:gravity="center"
-                android:hint="Instagram"
-                android:inputType="textPersonName" />
-
-            <EditText
-                android:id="@+id/editTel"
-                android:layout_width="318dp"
-                android:layout_height="77dp"
-                android:ems="10"
-
-                android:gravity="center"
-                android:hint="Telegram"
-                android:inputType="textPersonName" />
-
-            <EditText
-                android:id="@+id/editVk"
-                android:layout_width="318dp"
-                android:layout_height="77dp"
-                android:ems="10"
-
-                android:gravity="center"
-                android:hint="ВКонтакте"
-                android:inputType="textPersonName" />
-
+                android:hint="@string/Doctors_Number"
+                android:inputType="textPersonName"
+                tools:ignore="TextFields" />
         </LinearLayout>
     </ScrollView>
 

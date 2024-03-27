@@ -1,15 +1,14 @@
 package nfc.cair.project.Activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,18 +27,14 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     private String id=main.getId();
     private ArrayList<String> textList;
 
-
-    private EditText editFio;
-    private EditText editPhone;
-    private EditText editAboutMe;
-    private EditText editCompany;
-    private EditText editProfesia;
-    private EditText editPhoto;
-    private EditText editSiteCompany;
-    private EditText editInst;
-    private EditText editTel;
-    private EditText editVk;
-    private FloatingActionButton buttonDown;
+    SharedPreferences sharedPref;
+    private EditText editMedicine;
+    private EditText editNameDisease;
+    private EditText editSymptoms;
+    private EditText editFirstAid;
+    private EditText editDoctoname;
+    private EditText editDoctorNumber;
+    private FloatingActionButton  buttonDown;
     private FloatingActionButton buttonSave;
     private FloatingActionButton buttonExit;
 
@@ -48,17 +43,14 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc);
+        sharedPref= getSharedPreferences("my_pref", Context.MODE_PRIVATE);
+        editMedicine = (EditText) findViewById(R.id.medicine);
+        editNameDisease = (EditText) findViewById(R.id.nameDisease);
+        editSymptoms = (EditText) findViewById(R.id.symptoms);
+        editFirstAid = (EditText) findViewById(R.id.firstAid);
+        editDoctoname = (EditText) findViewById(R.id.doctoname);
+        editDoctorNumber = (EditText) findViewById(R.id.doctorNumber);
 
-        editFio = (EditText) findViewById(R.id.editFio);
-        editPhone = (EditText) findViewById(R.id.editPhone);
-        editAboutMe = (EditText) findViewById(R.id.editAboutMe);
-        editCompany = (EditText) findViewById(R.id.editCompany);
-        editProfesia = (EditText) findViewById(R.id.editProfesia);
-        editPhoto = (EditText) findViewById(R.id.editPhoto);
-        editSiteCompany = (EditText) findViewById(R.id.editSiteCompany);
-        editInst = (EditText) findViewById(R.id.editInst);
-        editTel = (EditText) findViewById(R.id.editTel);
-        editVk = (EditText) findViewById(R.id.editVk);
 
         buttonExit= findViewById(R.id.buttonExit);
         buttonExit.setVisibility(View.INVISIBLE);
@@ -70,11 +62,13 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
 
 
         buttonSave=findViewById(R.id.buttonSave);
+
         buttonDown.setOnClickListener(this);
         buttonSave.setOnClickListener(this);
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
 
@@ -91,21 +85,17 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                editFio.setText(textList.get(1));
-                editPhone.setText(textList.get(2));
-                editAboutMe.setText(textList.get(3));
-                editCompany.setText(textList.get(4));
-                editProfesia.setText(textList.get(5));
-                editPhoto.setText(textList.get(6));
-                editSiteCompany.setText(textList.get(7));
-                editInst.setText(textList.get(8));
-                editTel.setText(textList.get(9));
-                editVk.setText(textList.get(10));
+                editMedicine.setText(textList.get(1));
+                editNameDisease.setText(textList.get(2));
+                editSymptoms.setText(textList.get(3));
+                editFirstAid.setText(textList.get(4));
+                editDoctoname.setText(textList.get(5));
+                editDoctorNumber.setText(textList.get(6));
                 break;
             case R.id.buttonSave:
 
                 changeCardViewList(id.toString());
-                main.CardViewList.add(new CardView(Integer.valueOf(id),editPhoto.getText().toString(),editCompany.getText().toString()));
+                main.CardViewList.add(new CardView(Integer.valueOf(id),editDoctorNumber.getText().toString(),editNameDisease.getText().toString()));
                 textList=new ArrayList<String>();
                 arrayListAdd(textList);
                 RunUpdateThread runUpdateThread = new RunUpdateThread();
@@ -144,16 +134,12 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void arrayListAdd(ArrayList<String> edittext) {
         edittext.add(id);
-        edittext.add(editFio.getText().toString());
-        edittext.add(editPhone.getText().toString());
-        edittext.add(editAboutMe.getText().toString());
-        edittext.add(editCompany.getText().toString());
-        edittext.add(editProfesia.getText().toString());
-        edittext.add(editPhoto.getText().toString());
-        edittext.add(editSiteCompany.getText().toString());
-        edittext.add(editInst.getText().toString());
-        edittext.add(editTel.getText().toString());
-        edittext.add(editVk.getText().toString());
+        edittext.add(editMedicine.getText().toString());
+        edittext.add(editNameDisease.getText().toString());
+        edittext.add(editSymptoms.getText().toString());
+        edittext.add(editFirstAid.getText().toString());
+        edittext.add(editDoctoname.getText().toString());
+        edittext.add(editDoctorNumber.getText().toString());
 
     }
     private class RunUpdateThread implements Runnable {
@@ -162,6 +148,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             Message msg = new Message();
             DbConnect con = new DbConnect();
             con.run();
+            textList.add(sharedPref.getString("id", "400"));
             con.UpdateQuery(textList);
         }}
 
@@ -171,7 +158,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             Message msg = new Message();
             DbConnect con = new DbConnect();
             con.run();
-            String sqlSelect = "SELECT * FROM `nfcinfo` where ID ="+id;
+            String sqlSelect = "SELECT * FROM `Diseases` where Risk ="+id;
             textList = con.SelectQuery(sqlSelect);
 
         }

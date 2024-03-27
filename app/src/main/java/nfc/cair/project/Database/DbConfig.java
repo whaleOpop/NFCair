@@ -7,11 +7,11 @@ package nfc.cair.project.Database;
  * @since 2022-06-13
  */
 public class DbConfig {
-    protected static String dbname="nfccairpepepeepe";
-    protected static String dbhost="db4free.net";
+    protected static String dbname="sql11664074";
+    protected static String dbhost="sql11.freemysqlhosting.net";
     protected static String port= "3306";
-    protected static String user = "cairmysqlfsgtdrt";
-    protected static String password = "KiD-Kqf-pzD-chh";
+    protected static String user = "sql11664074";
+    protected static String password = "yiBVYSxrnr";
     protected static String url = "jdbc:mysql://" + dbhost + ":" + port + "/" + dbname + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
 
 
